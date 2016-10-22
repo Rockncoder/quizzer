@@ -1,0 +1,152 @@
+import {Component, OnInit} from '@angular/core';
+import {QuizService} from './quiz-service';
+import {Seek} from './Seek';
+import {IQuizList} from './interfaces/IQuizList';
+import {IQuizService} from './interfaces/IQuizService';
+import {IQuestion} from './interfaces/IQuestion';
+import {IChoice} from './interfaces/IChoice';
+import {ActivatedRoute, Params}   from '@angular/router';
+
+
+//
+//
+class Position {
+  index: number;
+  total: number;
+
+  constructor(maxPosition?: number) {
+    this.total = maxPosition || 0;
+    this.index = 0;
+  }
+
+  setMax(maxPosition: number) {
+    this.total = maxPosition;
+  }
+
+  seek(direction: Seek) {
+    switch (direction) {
+      case Seek.Forward:
+        if (this.index < this.total) {
+          this.index += 1;
+        }
+        break;
+      case Seek.Backward:
+        if (this.index) {
+          this.index -= 1;
+        }
+        break;
+      case Seek.Beginning:
+        this.index = 0;
+        break;
+    }
+  }
+
+  getPosition() {
+    return this.index;
+  }
+
+  getTotal() {
+    return this.total;
+  }
+}
+
+@Component({
+  selector: 'player',
+  templateUrl: './player.component.html'
+})
+
+export class PlayerComponent implements OnInit {
+  position: Position;
+  questions: IQuizList;
+  index = 0;
+  title = "";
+  tagLine = "";
+  current: IQuestion = {
+    question: "",
+    choices: []
+  };
+  total = 0;
+  answers: Array<boolean[]> = [];
+  responses = [];
+  right = 0;
+  showAnswers = false;
+
+
+  constructor(private _quizService: QuizService,
+              private route: ActivatedRoute) {
+    this.position = new Position();
+  }
+
+  ngOnInit(): void {
+    this.getQuiz();
+  }
+
+  getQuiz() {
+    this.route.params.forEach((params: Params) => {
+      let id = +params['id'];
+
+      debugger;
+      this._quizService.getQuiz(id).then(
+        (data) => {
+          debugger;
+          this.questions = data;
+          this.title = data.title;
+          this.tagLine = data.tagLine;
+          this.current = data.quiz.questions[0];
+          this.total = data.quiz.questions.length;
+
+          this.position.setMax(this.total);
+          this.position.seek(Seek.Beginning);
+          this.seekToQuestion(Seek.Beginning);
+        },
+        (error) => {
+          console.log("Error: " + error);
+        }
+      );
+    });
+  }
+
+  seekToQuestion(direction: Seek) {
+    if (direction !== Seek.Beginning) {
+      this.answers[this.position.getPosition()] = this.getPlayerResponses(this.responses, this.current.choices);
+    }
+
+    this.position.seek(direction);
+    let pos = this.position.getPosition();
+    this.current = this.questions.quiz.questions[pos];
+    this.responses = (this.answers[pos]) ? this.answers[pos] : [];
+    this.index = pos;
+  }
+
+  getPlayerResponses(responses: Array<boolean>, question: IChoice[]): boolean[] {
+    let ndx: number;
+    let newResponses = question.map(()=> false);
+
+    for (ndx = 0; ndx < responses.length; ndx += 1) {
+      if (responses[ndx]) {
+        newResponses[ndx] = true;
+      }
+    }
+    return newResponses;
+  }
+
+  tabulate(questions, answers): number {
+    return questions.reduce((previousScore, currentQuestion, index)=> {
+      let question = currentQuestion.choices.map((choice: IChoice) => !!choice.isAnswer);
+      let answer = answers[index];
+      let points = (answer && question.every((val, index) => val === answer[index]) ? 1 : 0);
+      return previousScore + points;
+    }, 0);
+  }
+
+  previous = () => this.seekToQuestion(Seek.Backward);
+
+  next = () => this.seekToQuestion(Seek.Forward);
+
+  score = () => {
+    this.seekToQuestion(Seek.Score);
+    this.right = this.tabulate(this.questions.quiz.questions, this.answers);
+    this.showAnswers = true;
+    this.seekToQuestion(Seek.Beginning);
+  }
+}
