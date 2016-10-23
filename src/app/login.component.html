@@ -1,66 +1,21 @@
 <h1>Login</h1>
-<form  (submit)="doLogin($event)" #loginForm="ngForm">
-  <input ngControl="email" type="email" placeholder="Your email">
-  <input ngControl="password" type="password" placeholder="Your password">
-  <button type="submit">Log in</button>
+<form (submit)="doLogin()" #loginForm="ngForm">
+  <div>
+    <md-input type="email" placeholder="Your email">
+
+    </md-input>
+  </div>
+  <div>
+    <md-input [(ngModel)]="password"
+              name="password"
+              minlength="8" type="password" placeholder="Your password"
+              #spy1="ngModel" required>
+    </md-input>
+    <span *ngIf="spy1.touched && !spy1.valid">Error Will Robinson</span>
+  </div>
+  <div>
+    {{spy1.pristine}}|{{spy1.touched}}|{{spy1.valid}}
+  </div>
+  <button md-raised-button color="primary" [disabled]="!loginForm.valid" type="submit">Login</button>
 </form>
 
-<!--<div>-->
-  <!--<div [hidden]="submitted">-->
-    <!--<h1>Login Form</h1>-->
-    <!--<form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">-->
-      <!--<div>-->
-        <!--<label for="username">User Name</label>-->
-        <!--<input id="username"-->
-               <!--type="text"-->
-               <!--required-->
-               <!--[(ngModel)]="model.username"-->
-               <!--name="username"-->
-        <!--&gt;-->
-      <!--</div>-->
-      <!--<p appBackcolor="brown"> Hello people</p>-->
-      <!--<div>-->
-        <!--<md-input appBackcolor="yellow"-->
-                  <!--placeholder="Character count (100 max)"-->
-                  <!--maxlength="100"-->
-                  <!--class="demo-full-width"-->
-                  <!--value="Hello world. How are you?"-->
-                  <!--#characterCountHintExample-->
-                  <!--[(ngModel)]="model.freeflow"-->
-                  <!--id="freeflow"-->
-                  <!--name="freeflow"-->
-                  <!--&gt;-->
-          <!--<md-hint align="end">{{characterCountHintExample.characterCount}} / 100</md-hint>-->
-        <!--</md-input>-->
-      <!--</div>-->
-      <!--<div>-->
-        <!--<md-slider min="1" max="5"></md-slider>-->
-      <!--</div>-->
-      <!--&lt;!&ndash;<div>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="email">Email</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<input id="email"&ndash;&gt;-->
-      <!--&lt;!&ndash;type="email"&ndash;&gt;-->
-      <!--&lt;!&ndash;required&ndash;&gt;-->
-      <!--&lt;!&ndash;[(ngModel)]="email"&ndash;&gt;-->
-      <!--&lt;!&ndash;placeholder="(email)"&ndash;&gt;-->
-      <!--&lt;!&ndash;ngControl="email" #bob="ngForm">&ndash;&gt;-->
-      <!--&lt;!&ndash;<span [hidden]="bob.valid || bob.pristine">&ndash;&gt;-->
-      <!--&lt;!&ndash;email is required&ndash;&gt;-->
-      <!--&lt;!&ndash;</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--&lt;!&ndash;<div>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="password">Password</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<input id="password"&ndash;&gt;-->
-      <!--&lt;!&ndash;type="password"&ndash;&gt;-->
-      <!--&lt;!&ndash;required&ndash;&gt;-->
-      <!--&lt;!&ndash;pattern=".{6,}"&ndash;&gt;-->
-      <!--&lt;!&ndash;[(ngModel)]="password"&ndash;&gt;-->
-      <!--&lt;!&ndash;ngControl="password" #pass="ngForm">&ndash;&gt;-->
-      <!--&lt;!&ndash;<span [hidden]="pass.valid || pass.pristine">&ndash;&gt;-->
-      <!--&lt;!&ndash;Password is required (and must be 6 chars long)&ndash;&gt;-->
-      <!--&lt;!&ndash;</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--<button [disabled]="!loginForm.valid" type="submit">Login</button>-->
-    <!--</form>-->
-  <!--</div>-->
-<!--</div>-->

@@ -1,0 +1,19 @@
+<div>
+  <div [hidden]="submitted">
+    <h1>Entry Form</h1>
+    <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
+      <div>
+      </div>
+      <div>
+      </div>
+      <div>
+        <md-slider min="1" max="5"></md-slider>
+      </div>
+      <div>
+      </div>
+      <div>
+      </div>
+      <button [disabled]="!loginForm.valid" type="submit">Login</button>
+    </form>
+  </div>
+</div>

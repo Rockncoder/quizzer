@@ -18,6 +18,7 @@ import {QuizComponent}  from './quiz.component';
 import {PlayerComponent}  from './player.component';
 import {QuizService}         from './quiz-service';
 import { BackcolorDirective } from './backcolor/backcolor.directive';
+import { EntryComponent } from './entry/entry.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BackcolorDirective } from './backcolor/backcolor.directive';
     LoginComponent,
     QuizComponent,
     PlayerComponent,
-    BackcolorDirective
+    BackcolorDirective,
+    EntryComponent
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

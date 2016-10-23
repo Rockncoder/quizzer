@@ -8,6 +8,9 @@ import {Login} from "./login";
 })
 export class LoginComponent {
   form;
+  username ="troy";
+  password;
+
   powers = ['Smarts', 'Flexibility', 'Heat', 'Weather control'];
   model = new Login("Troy", "1T2M", "troy@gmail.com", "flying dog");
   submitted = false;
