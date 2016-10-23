@@ -85,10 +85,8 @@ export class PlayerComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
 
-      debugger;
       this._quizService.getQuiz(id).then(
         (data) => {
-          debugger;
           this.questions = data;
           this.title = data.title;
           this.tagLine = data.tagLine;

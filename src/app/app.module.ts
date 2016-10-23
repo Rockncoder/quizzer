@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { MaterialModule } from '@angular/material';
+
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -15,6 +17,7 @@ import {LoginComponent}  from './login.component';
 import {QuizComponent}  from './quiz.component';
 import {PlayerComponent}  from './player.component';
 import {QuizService}         from './quiz-service';
+import { BackcolorDirective } from './backcolor/backcolor.directive';
 
 
 @NgModule({
@@ -23,6 +26,7 @@ import {QuizService}         from './quiz-service';
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    MaterialModule.forRoot(),
     AppRoutingModule
   ],
   declarations: [
@@ -30,7 +34,8 @@ import {QuizService}         from './quiz-service';
     AboutComponent,
     LoginComponent,
     QuizComponent,
-    PlayerComponent
+    PlayerComponent,
+    BackcolorDirective
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

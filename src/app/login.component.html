@@ -1,45 +1,66 @@
 <h1>Login</h1>
+<form  (submit)="doLogin($event)" #loginForm="ngForm">
+  <input ngControl="email" type="email" placeholder="Your email">
+  <input ngControl="password" type="password" placeholder="Your password">
+  <button type="submit">Log in</button>
+</form>
+
 <!--<div>-->
   <!--<div [hidden]="submitted">-->
     <!--<h1>Login Form</h1>-->
-    <!--<form (ngSubmit)="onSubmit()" #heroForm="ngForm">-->
+    <!--<form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">-->
       <!--<div>-->
         <!--<label for="username">User Name</label>-->
         <!--<input id="username"-->
                <!--type="text"-->
                <!--required-->
-               <!--[(ngModel)]="username"-->
-               <!--placeholder="(username)"-->
-               <!--ngControl="username" #name="ngForm">-->
-        <!--<span [hidden]="name.valid || name.pristine">-->
-          <!--Name is required-->
-        <!--</span>-->
+               <!--[(ngModel)]="model.username"-->
+               <!--name="username"-->
+        <!--&gt;-->
+      <!--</div>-->
+      <!--<p appBackcolor="brown"> Hello people</p>-->
+      <!--<div>-->
+        <!--<md-input appBackcolor="yellow"-->
+                  <!--placeholder="Character count (100 max)"-->
+                  <!--maxlength="100"-->
+                  <!--class="demo-full-width"-->
+                  <!--value="Hello world. How are you?"-->
+                  <!--#characterCountHintExample-->
+                  <!--[(ngModel)]="model.freeflow"-->
+                  <!--id="freeflow"-->
+                  <!--name="freeflow"-->
+                  <!--&gt;-->
+          <!--<md-hint align="end">{{characterCountHintExample.characterCount}} / 100</md-hint>-->
+        <!--</md-input>-->
       <!--</div>-->
       <!--<div>-->
-        <!--<label for="email">Email</label>-->
-        <!--<input id="email"-->
-               <!--type="email"-->
-               <!--required-->
-               <!--[(ngModel)]="email"-->
-               <!--placeholder="(email)"-->
-               <!--ngControl="email" #bob="ngForm">-->
-        <!--<span [hidden]="bob.valid || bob.pristine">-->
-          <!--email is required-->
-        <!--</span>-->
+        <!--<md-slider min="1" max="5"></md-slider>-->
       <!--</div>-->
-      <!--<div>-->
-        <!--<label for="password">Password</label>-->
-        <!--<input id="password"-->
-               <!--type="password"-->
-               <!--required-->
-               <!--pattern=".{6,}"-->
-               <!--[(ngModel)]="password"-->
-               <!--ngControl="password" #pass="ngForm">-->
-        <!--<span [hidden]="pass.valid || pass.pristine">-->
-          <!--Password is required (and must be 6 chars long)-->
-        <!--</span>-->
-      <!--</div>-->
-      <!--<button [disabled]="!heroForm.valid" type="submit" >Login</button>-->
+      <!--&lt;!&ndash;<div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<label for="email">Email</label>&ndash;&gt;-->
+      <!--&lt;!&ndash;<input id="email"&ndash;&gt;-->
+      <!--&lt;!&ndash;type="email"&ndash;&gt;-->
+      <!--&lt;!&ndash;required&ndash;&gt;-->
+      <!--&lt;!&ndash;[(ngModel)]="email"&ndash;&gt;-->
+      <!--&lt;!&ndash;placeholder="(email)"&ndash;&gt;-->
+      <!--&lt;!&ndash;ngControl="email" #bob="ngForm">&ndash;&gt;-->
+      <!--&lt;!&ndash;<span [hidden]="bob.valid || bob.pristine">&ndash;&gt;-->
+      <!--&lt;!&ndash;email is required&ndash;&gt;-->
+      <!--&lt;!&ndash;</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<label for="password">Password</label>&ndash;&gt;-->
+      <!--&lt;!&ndash;<input id="password"&ndash;&gt;-->
+      <!--&lt;!&ndash;type="password"&ndash;&gt;-->
+      <!--&lt;!&ndash;required&ndash;&gt;-->
+      <!--&lt;!&ndash;pattern=".{6,}"&ndash;&gt;-->
+      <!--&lt;!&ndash;[(ngModel)]="password"&ndash;&gt;-->
+      <!--&lt;!&ndash;ngControl="password" #pass="ngForm">&ndash;&gt;-->
+      <!--&lt;!&ndash;<span [hidden]="pass.valid || pass.pristine">&ndash;&gt;-->
+      <!--&lt;!&ndash;Password is required (and must be 6 chars long)&ndash;&gt;-->
+      <!--&lt;!&ndash;</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--<button [disabled]="!loginForm.valid" type="submit">Login</button>-->
     <!--</form>-->
   <!--</div>-->
 <!--</div>-->

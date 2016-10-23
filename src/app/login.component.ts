@@ -1,17 +1,24 @@
-import {Component} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 
+import {Login} from "./login";
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html'
 })
+export class LoginComponent {
+  form;
+  powers = ['Smarts', 'Flexibility', 'Heat', 'Weather control'];
+  model = new Login("Troy", "1T2M", "troy@gmail.com", "flying dog");
+  submitted = false;
 
-export class LoginComponent{
-  public username:string;
-  public password:string;
-  public email:string;
 
-  constructor(){
+  onSubmit(formData) {
+    this.submitted = true;
+    console.log(formData);
+  }
+
+  get diagnostic() {
+    return JSON.stringify(this.model);
   }
 }
