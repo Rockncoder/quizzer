@@ -6,6 +6,9 @@ import {EntryComponent}       from './entry/entry.component';
 import {LoginComponent}       from './login.component';
 import {QuizComponent}       from './quiz.component';
 import {PlayerComponent}       from './player.component';
+import { UserComponent } from './user/user.component';
+import { ModelComponent } from './model/model.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/about', pathMatch: 'full'},
@@ -14,6 +17,9 @@ const routes: Routes = [
   {path: 'entry', component: EntryComponent},
   {path: 'quiz', component: QuizComponent},
   {path: 'player/:id', component: PlayerComponent},
+  {path: 'user', component: UserComponent},
+  {path: 'model', component: ModelComponent},
+
 ];
 
 @NgModule({

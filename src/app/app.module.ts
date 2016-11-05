@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -19,6 +20,8 @@ import {PlayerComponent}  from './player.component';
 import {QuizService}         from './quiz-service';
 import { BackcolorDirective } from './backcolor/backcolor.directive';
 import { EntryComponent } from './entry/entry.component';
+import { UserComponent } from './user/user.component';
+import { ModelComponent } from './model/model.component';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { EntryComponent } from './entry/entry.component';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     MaterialModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -37,7 +41,9 @@ import { EntryComponent } from './entry/entry.component';
     QuizComponent,
     PlayerComponent,
     BackcolorDirective,
-    EntryComponent
+    EntryComponent,
+    UserComponent,
+    ModelComponent
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]
