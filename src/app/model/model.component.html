@@ -1,0 +1,23 @@
+<form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+  <div formGroupName="dateRange">
+    <input type="date" formControlName="from">
+    <input type="date" formControlName="to">
+  </div>
+  <div>Username:
+    <input type="text" formControlName="username">
+  </div>
+  <div>SSN:
+    <input type="text" formControlName="ssn">
+  </div>
+  <div formGroupName="passwordsGroup">
+    <div>Password:
+      <input type="password" formControlName="password">
+    </div>
+    <div>Confirm password:
+      <input type="password" formControlName="pconfirm">
+    </div>
+  </div>
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+</form>
